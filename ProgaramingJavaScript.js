@@ -207,10 +207,10 @@ let myDate2 = new Date(1000);  // 1970.1.1.0시 기준 + 1000 밀리초!(밀리�
 // new Date('문자열')
 let myDate3 = new Date('2017-05-18');  // 9시 기준으로 생성
 console.log(myDate3);
-
 // new Date('문자열 + T')
 let myDate4 = new Date('2017-05-18T18:22');  // 정해진 시간 기준으로 생성(시:분:초 원하는 만큼 설정)
 console.log(myDate4);
+
 
 // new Date(YYYY, MM, date, hour, minutes, seconds, ms)
 let myDate5 = new Date(2021, 7, 25, 16, 13, 22);
@@ -279,3 +279,112 @@ console.log(courseRanking[1]);
 console.log(courseRanking[1 + 2]);
 // 순서가 있는 여러 값들의 묶음은 배열을 사용하는것을 지향함
 
+
+/// git hub로 자료 이동함 210725
+
+
+// 실습과제_배열 내부 순서대로 전체 출력하기
+let dataType = ['number', 'string', 'boolean', 'null', 'undefined', 'object'];
+function printDataType (data) {
+  for(let i = 0; i < dataType.length; i++) {        // dateType.length : 6개의 요소가 있는 배열이므로 길이는 6이다.
+    console.log(dataType[i])
+  }
+}
+printDataType();
+
+function printDataType2 (data) {
+  for(let data in dataType) {
+    console.log(dataType[data])
+  }
+}
+printDataType2();
+
+
+// 배열 (Array)
+let members = ['쿤갈레', 'Zerrard66', '우리생각해써', '흙토끼', 'End Miracle'];
+
+console.log(typeof members);   // object
+
+console.log(members.length);    // 5
+console.log(members['length'])   // 5 배열에서만 사용 할 수 있다.
+console.log(members[members.length - 1])  // 배열의 마지막 요소 출력
+
+
+// 배열의 요소 추가
+members[5] = 'NiceCodeit';  
+console.log(members[5]);
+
+members[7] = 'NiceYB';  
+console.log(members[7]);   // 6번 인덱스가 없기때문에 empty로 출력됨
+
+console.log(members.length)    // empty도 갯수로 취급되어 8이라는 값이 출력됨
+console.log(members) 
+
+// 배열의 요소 수정
+members[3] = 'ChangeProperty';  // 3번 인덱스에 요소 설정되 있다면 재지정이 되면서 수정이 된다.
+console.log(members[3]);
+console.log(members);
+
+
+// 배열의 요소 삭제
+delete members[4];           // 삭제
+console.log(members);        // 삭제가 되지만 empty로 남는다!
+
+
+// 배열의 메소드 (Array's MeThod)
+// Splice(startIndex, deleteCount, addItem) 배열 index 삭제
+members.splice(0, 1);        // 0번 인덱스 포함 순차적으로 1개 삭제 (0번 인덱스만 삭제)
+console.log(members); 
+
+members.splice(5);           // 숫자 하나만 쓰면 해당 인덱스 부터 순차적으로 끝까지 다 삭제
+console.log(members); 
+
+members.splice(1, 2, 'addProperty1', 'addProperty2');    // 2번, 3번 인덱스 삭제 후 그 자리에 요소 추가
+console.log(members); 
+
+// 결국 splice 만 있으면 원하는 위치에 추가 삭제 모두 가능
+members.splice(1, 0, 'addProperty3', 'addProperty4');    // 요소 삭제 갯수를 0으로 하면 추가만 된다.
+console.log(members);
+
+
+// 실습과제_온도 바꾸기(섭씨->화씨)
+let celsiusTemps = [27, 25, 26, 22, 28, 27, 21];
+
+let fahrenheitTemps = [];              // []; 으로 선언하면 
+console.log(fahrenheitTemps)           // 배열이 되는 것을 확인함.
+console.log(typeof fahrenheitTemps)    // object
+
+for (let i = 0; i < celsiusTemps.length; i++) {
+  fahrenheitTemps[i] = (celsiusTemps[i] * 9 / 5) + 32;
+}
+
+console.log(fahrenheitTemps);
+
+
+
+// 실습과제_splice 연습하기
+let fruits = ['레몬', '토마토', '딸기', '바나나'];
+let ages = [20, 24, 25, 29, 30, 33];
+let numbers = [];
+
+// fruits 배열에 '토마토'를 삭제하고 그 자리에 '사과', '청포도'를 추가해 주세요.
+fruits.splice(1, 1, '사과', '청포도');
+// fruits 배열의 첫 번째 요소를 삭제해 주세요.
+fruits.splice(0, 1)
+// ages 배열에 마지막 요소를 삭제해 주세요.
+ages.splice(ages.length -1, 1)
+// ages 배열의 2번, 3번 인덱스를 26, 28로 변경해 주세요.
+ages.splice(2, 2, 26, 28)
+// numbers 배열에 1, 2, 3, 5, 8, 9를 순서대로 추가해 주세요.
+numbers = [1, 2, 3, 5, 8, 9];
+// 반복문을 활용해서 numbers 배열의 요소들 중 홀수를 모두 삭제해 주세요.
+for(let i = 0; i < numbers.length; i++) {
+  if(numbers[i] % 2 !== 0) {
+    numbers.splice(i, 1);
+    i--;                      // 반복문을 통해 인덱스가 삭제되면 인덱스가 재배열된다(번호가 앞당겨짐)
+  }                           // 따라서 인덱스가 사라질 때 마다 i를 1씩 줄여줘야 한다.
+}
+
+
+// 07.매열 메소드 II 부터 시작하기 
+// push GitHub.
